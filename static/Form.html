@@ -4,98 +4,114 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>FLL Scoring</title>
         <script type="text/javascript">
-            var dict={"mission0a":0,
-                    "mission1a":0,
-                    "mission2a":0,
-                    "mission2b":0,
-                    "mission3a":0,
-                    "mission4a":0,
-                    "mission4b":0,
-                    "mission5a":0,
-                    "mission6a":0,
-                    "mission6b":0,
-                    "mission7a":0,
-                    "mission8a":0,
-                    "mission8a":0,
-                    "mission9a":0,
-                    "mission9b":0,
-                    "mission10a":0,
-                    "mission11a":0,
-                    "mission12a":0,
-                    "mission12b":0,
-                    "mission13a":0,
-                    "mission13b":0,
-                    "mission14a":0,
-                    "mission14b":0,
-                    "mission15a":0,
-                    "mission15b":0,
-                    "mission15c":0,
-                    "mission15d":0,
-                    "mission15e":0,
-                    "missionPT":0}
-                var dictString="text";
+            var dictString = "text";
             function total_score() {
+                var dict = {
+                    mission0a: 0,
+                    mission1a: 0,
+                    mission2a: 0,
+                    mission2b: 0,
+                    mission3a: 0,
+                    mission4a: 0,
+                    mission4b: 0,
+                    mission5a: 0,
+                    mission6a: 0,
+                    mission6b: 0,
+                    mission7a: 0,
+                    mission8a: 0,
+                    mission8a: 0,
+                    mission9a: 0,
+                    mission9b: 0,
+                    mission10a: 0,
+                    mission11a: 0,
+                    mission12a: 0,
+                    mission12b: 0,
+                    mission13a: 0,
+                    mission13b: 0,
+                    mission14a: 0,
+                    mission14b: 0,
+                    mission15a: 0,
+                    mission15b: 0,
+                    mission15c: 0,
+                    mission15d: 0,
+                    mission15e: 0,
+                    missionPT: 0
+                };
                 var score = 0;
                 var mission0 = document.getElementById("M00a");
                 if (mission0.checked) {
                     score += 20;
-                    dict.mission0a = 1;}
+                    dict.mission0a = 1;
+                }
                 var mission1a = document.getElementById("M01a");
-                if (mission1a.checked){
+                if (mission1a.checked) {
                     score += 20;
-                    dict.mission1a = 1 ;}
+                    dict.mission1a = 1;
+                }
                 var mission2a = document.getElementById("M02a");
                 score += Number(mission2a.value);
                 dict.mission2a = Number(mission2a.value) / 10;
                 var mission2b = document.getElementById("M02b");
-                if (mission2b.checked && mission2a.value == 10){
+                if (mission2b.checked && mission2a.value == 10) {
                     score += 20;
-                    dict.mission2b = 1;}
-                if (mission2b.checked && mission2a.value == 20){
+                    dict.mission2b = 1;
+                }
+                if (mission2b.checked && mission2a.value == 20) {
                     score += 30;
-                    dict.mission2b = 1;}
-                if (mission2b.checked && mission2a.value == 30){
+                    dict.mission2b = 1;
+                }
+                if (mission2b.checked && mission2a.value == 30) {
                     score += 10;
-                    dict.mission2b = 1;}
+                    dict.mission2b = 1;
+                }
                 var mission3a = document.getElementById("M03a");
-                if (mission3a.checked){
+                if (mission3a.checked) {
                     score += 20;
-                    dict.mission3a = 1;}
+                    dict.mission3a = 1;
+                }
                 var mission4a = document.getElementById("M04a");
-                if (mission4a.checked){
+                if (mission4a.checked) {
                     score += 10;
-                    dict.mission4a = 1;}
+                    dict.mission4a = 1;
+                }
                 var mission4b = document.getElementById("M04b");
-                if (mission4b.checked){
+                if (mission4b.checked) {
                     score += 20;
-                    dict.mission4b = 1;}
+                    dict.mission4b = 1;
+                }
                 var mission5a = document.getElementById("M05a");
-                if (mission5a.checked){
+                if (mission5a.checked) {
                     score += 30;
-                    dict.mission5a = 1;}
+                    dict.mission5a = 1;
+                }
                 var mission6a = document.getElementById("M06a");
-                if (mission6a.checked){
+                if (mission6a.checked) {
                     score += 10;
-                    dict.mission6a = 1;}
+                    dict.mission6a = 1;
+                }
                 var mission6b = document.getElementById("M06b");
-                if (mission6b.checked){
+                if (mission6b.checked) {
                     score += 10;
-                    dict.mission6b = 1;}
+                    dict.mission6b = 1;
+                }
                 var mission7a = document.getElementById("M07a");
-                if (mission7a.checked){
+                if (mission7a.checked) {
                     score += 20;
-                    dict.mission7a = 1;}
+                    dict.mission7a = 1;
+                }
                 var mission8a = document.getElementById("M08a");
                 score += Number(mission8a.value);
                 dict.mission8a = Number(mission8a.value) / 10;
                 var mission9a = document.getElementById("M09a");
-                if (mission9a.checked){
+                if (mission9a.checked) {
                     score += 10;
-                    dict.mission9a = 1;}
+                    dict.mission9a = 1;
+                }
                 var mission9b = document.getElementById("M09b");
-                if (mission9b.checked){
+                if (mission9b.checked) {
                     score += 10;
-                    dict.mission9b = 1;}
+                    dict.mission9b = 1;
+                }
                 var mission10a = document.getElementById("M10a");
                 score += Number(mission10a.innerText) * 10;
                 dict.mission10a = Number(mission10a.innerText);
@@ -103,21 +119,25 @@
                 score += Number(mission11a.value);
                 dict.mission11a = Number(mission11a.value) / 10;
                 var mission12a = document.getElementById("M12a");
-                if (mission12a.checked){
+                if (mission12a.checked) {
                     score += 10;
-                    dict.mission12a = 1;}
+                    dict.mission12a = 1;
+                }
                 var mission12b = document.getElementById("M12b");
-                if (mission12b.checked){
+                if (mission12b.checked) {
                     score += 20;
-                    dict.mission12b = 1;}
+                    dict.mission12b = 1;
+                }
                 var mission13a = document.getElementById("M13a");
-                if (mission13a.checked){
+                if (mission13a.checked) {
                     score += 10;
-                    dict.mission13a = 1;}
+                    dict.mission13a = 1;
+                }
                 var mission13b = document.getElementById("M13b");
-                if (mission13b.checked){
+                if (mission13b.checked) {
                     score += 20;
-                    dict.mission13b = 1;}
+                    dict.mission13b = 1;
+                }
                 var mission14a = document.getElementById("M14a");
                 score += Number(mission14a.innerText) * 5;
                 dict.mission14a = Number(mission14a.innerText);
@@ -125,25 +145,30 @@
                 score += Number(mission14b.innerText) * 5;
                 dict.mission14b = Number(mission14b.innerText);
                 var mission15a = document.getElementById("M15a");
-                if (mission15a.checked){
+                if (mission15a.checked) {
                     score += 10;
-                    dict.mission15a = 1;}
+                    dict.mission15a = 1;
+                }
                 var mission15b = document.getElementById("M15b");
-                if (mission15b.checked){
+                if (mission15b.checked) {
                     score += 10;
-                    dict.mission15b = 1;}
+                    dict.mission15b = 1;
+                }
                 var mission15c = document.getElementById("M15c");
-                if (mission15c.checked){
+                if (mission15c.checked) {
                     score += 10;
-                    dict.mission15c = 1;}
+                    dict.mission15c = 1;
+                }
                 var mission15d = document.getElementById("M15d");
-                if (mission15d.checked){
+                if (mission15d.checked) {
                     score += 10;
-                    dict.mission15d = 1;}
+                    dict.mission15d = 1;
+                }
                 var mission15e = document.getElementById("M15e");
-                if (mission15e.checked){
+                if (mission15e.checked) {
                     score += 10;
-                    dict.mission15e = 1;}
+                    dict.mission15e = 1;
+                }
                 var missionPT = document.getElementById("PrecisionTokens");
                 var scorelookup = { "": 0, 0: 0, 1: 10, 2: 15, 3: 25, 4: 35, 5: 50, 6: 50 };
                 score += scorelookup[missionPT.value];
@@ -151,7 +176,7 @@
                 document.getElementById("TotalPoints").value = score;
                 var total_score = score;
                 console.log(total_score);
-                dictString= JSON.stringify(dict);
+                dictString = JSON.stringify(dict);
                 console.log(dict);
             }
 
@@ -197,20 +222,21 @@
                 }
 
                 if (!document.getElementById("M04a").checked && document.getElementById("M04b").checked) {
-                    alert(
-                        "Problem with mission 4: Cannot get bonus point without the art piece being in the museum."
-                    );
+                    alert("Problem with mission 4: Cannot get bonus point without the art piece being in the museum.");
                     return;
                 }
 
                 if (!document.getElementById("M12a").checked && document.getElementById("M12b").checked) {
-                    alert(
-                        "Problem with mission 12: Cannot get bonus point if the chicken does not move."
-                    );
+                    alert("Problem with mission 12: Cannot get bonus point if the chicken does not move.");
                     return;
                 }
 
-                if (document.getElementById("M14a").innerText != "0" && document.getElementById("M14b").innerText == "0" || document.getElementById("M14a").innerText == "0" && document.getElementById("M14b").innerText != "0") {
+                if (
+                    (document.getElementById("M14a").innerText != "0" &&
+                        document.getElementById("M14b").innerText == "0") ||
+                    (document.getElementById("M14a").innerText == "0" &&
+                        document.getElementById("M14b").innerText != "0")
+                ) {
                     alert(
                         "Problem with mission 14: Audience members cannot be in an area without the area also containing audience members or vice versa."
                     );
@@ -447,7 +473,7 @@
 
             td {
                 padding: 10px;
-                text-align:left;
+                text-align: left;
             }
         </style>
     </head>
@@ -533,17 +559,15 @@
                         <td>If the red flag is down, what is the active scene's color?</td>
                         <td>
                             <select id="M02a" name="M02a" onchange="total_score();">
-                            <option value="0">--Choose Option--</option>
-                            <option value="10">Blue</option>
-                            <option value="20">Pink</option>
-                            <option value="30">Orange</option>
-                        </select>
+                                <option value="0">--Choose Option--</option>
+                                <option value="10">Blue</option>
+                                <option value="20">Pink</option>
+                                <option value="30">Orange</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Bonus: do both teams have the same colored scene?
-                        </td>
+                        <td>Bonus: do both teams have the same colored scene?</td>
                         <td>
                             <input type="checkbox" id="M02b" onchange="total_score();" />
                         </td>
@@ -564,10 +588,10 @@
                     </tr>
                     <tr>
                         <td>Is the art piece at least partially in the museum area?</td>
-                            <td>
-                              <input type="checkbox" id="M04a" onchange="total_score();" />
-                            </td>
-                        </tr>
+                        <td>
+                            <input type="checkbox" id="M04a" onchange="total_score();" />
+                        </td>
+                    </tr>
                     <tr>
                         <td>Is the art piece completely supported by the pedestal?</td>
                         <td>
@@ -617,13 +641,13 @@
                     <tr>
                         <td>Which color has the camera most recently rolled past?</td>
                         <td>
-                        <select id="M08a" name="M08a" onchange="total_score();">
-                            <option value="0">--Choose Option--</option>
-                            <option value="10">Darkest Blue</option>
-                            <option value="20">Medium Blue</option>
-                            <option value="30">Lightest Blue</option>
-                        </select>
-                       </td>
+                            <select id="M08a" name="M08a" onchange="total_score();">
+                                <option value="0">--Choose Option--</option>
+                                <option value="10">Darkest Blue</option>
+                                <option value="20">Medium Blue</option>
+                                <option value="30">Lightest Blue</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <th colspan="2">Mission 9: Movie Set</th>
@@ -633,9 +657,7 @@
                         <td><input type="checkbox" id="M09a" onchange="total_score();" /></td>
                     </tr>
                     <tr>
-                        <td>
-                            Is the camera at least partially inside the target area and touching the mat?
-                        </td>
+                        <td>Is the camera at least partially inside the target area and touching the mat?</td>
                         <td>
                             <input type="checkbox" id="M09b" onchange="total_score();" />
                         </td>
@@ -658,7 +680,7 @@
                     </tr>
                     <tr>
                         <td>Which color is the arrow pointing at?</td>
-                        <td>    
+                        <td>
                             <select id="M11a" name="M11a" onchange="total_score();">
                                 <option value="0">--Choose Option--</option>
                                 <option value="10">Yellow</option>
