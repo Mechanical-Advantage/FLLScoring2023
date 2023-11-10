@@ -327,10 +327,11 @@
             function sendMatch(matchData) {
                 const http = new XMLHttpRequest();
                 const form = new FormData();
-
+                console.log("keys and values:");
                 for (const [key, value] of Object.entries(matchData)) {
                     if (key != "UUId") {
                         form.append(key, value);
+                        console.log(key, value);
                     }
                 }
 
