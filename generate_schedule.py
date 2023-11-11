@@ -33,6 +33,33 @@ for teamrow in teams_raw:
     for table in range(len(config.schedule_tables_long)):
         teams[int(teamrow[0])]["previous_tables"][table] = 0
 
+# Create judging sessions
+judging_sessions = []
+judging_session_count = math.ceil(len(teams)/len(config.schedule_judging_rooms))
+judging_session_length = config.schedule_judging_inlength + config.schedule_judging_outlength
+for i in range(judging_session_count):
+    start_time = config.schedule_starttime + (judging_session_length * i)
+    judging_sessions.append({"teams": [], "start_time": start_time,
+                             "end_time": start_time + config.schedule_judging_inlength})
+
+# Assign judging sessions
+i = 0
+for teamnumber in teams.keys():
+    judging_sessions[i]["teams"].append(teamnumber)
+    teams[teamnumber]["blackout_start"] = judging_sessions[i]["start_time"] - \
+        config.schedule_judging_teamgrace
+    teams[teamnumber]["blackout_end"] = judging_sessions[i]["end_time"] + config.schedule_judging_teamgrace
+    if len(judging_sessions[i]["teams"]) >= len(config.schedule_judging_rooms):
+        i += 1
+
+# Print judging sessions
+print("\nJudging sessions:")
+for x in judging_sessions:
+    print("teams:", x.get('teams'), "start_time", convert_time(x['start_time']), "end_time", convert_time(x["end_time"]))
+print("Ends at", convert_time(
+    judging_sessions[len(judging_sessions)-1]["end_time"], True))
+
+
 # Generate possible arrangements of teams
 def get_arrangements(pair_count):
     result = []
@@ -200,6 +227,7 @@ def generate_matches(break_limit=None):
 
 
 # Regenerate matches if break too close to end
+print("Matches")
 teams_backup = copy.deepcopy(teams)
 matches = generate_matches()
 if len(matches) - last_break <= 1:
@@ -216,6 +244,11 @@ print("Ends at", convert_time(matches[len(matches)-1]["end_time"], True))
 # Get schedule for teams
 def get_team_schedule(team_query):
     schedule_items = []
+    for session in judging_sessions:
+        if team_query in session["teams"]:
+            room = session["teams"].index(team_query)
+            schedule_items.append({"start_time": session["start_time"], "end_time": session["end_time"],
+                                   "title": "Judging", "location": config.schedule_judging_rooms[room]})
 
     match_number = 0
     table_offsettime = config.schedule_match_cycletime / (len(config.schedule_tables_long) / 2)
@@ -250,6 +283,8 @@ team_list = cur.execute(
 team_schedules = {}
 for team in [int(x[0]) for x in teams_raw]:
     team_schedules[team] = get_team_schedule(team)
+excel_writer.create(judging_sessions=judging_sessions,
+                    matches=matches, team_schedules=team_schedules, team_list=team_list)
 
 # Team schedule generator
 # print()
