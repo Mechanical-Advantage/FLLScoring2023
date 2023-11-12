@@ -12,7 +12,7 @@ schedule_judging_rooms = ["Room 1", "Room 2", "Room 3", "Room 4"]  # for judging
 # General config for schedule
 schedule_starttime = 1700402400  # unix time, when does the first match & judging session begin?
 schedule_match_countperteam = 5  # how many matches should each team play?
-schedule_match_cycletime = 600  # secs, how long between the start of each match?
+schedule_match_cycletime = 720  # secs, how long between the start of each match?
 schedule_match_breakfrequency = 6  # how many matches should be played between each break?
 schedule_match_breaklength = 1  # how many matches should each break last?
 schedule_match_teamgrace = 1  # how many match cycles must separate two matches with the same team?
@@ -23,4 +23,4 @@ schedule_judging_teamgrace = 420  # secs, how long before or after judging shoul
 # General config for playoffs
 playoffs_starttime = 1700402400
 playoffs_cycletime = 600
-playoffs_matchnumberstart = 50
+playoffs_matchnumberstart = 100
