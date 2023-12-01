@@ -68,6 +68,8 @@ class Root(object):
         conn_global.close()
         return
     
+    
+    
     @cherrypy.expose
     def getMatch(self, team, match):
         print("getMatch(", team, ",", match, ")")
@@ -278,6 +280,26 @@ def websocket_send_timer_thread():
             except:
                 pass
 
+def updateStatus(IP, status):
+    print("IP", str(IP), type(str(IP)), "status", status, type(status))
+    conn_global = sql.connect("data.db")
+    cur_global = conn_global.cursor()
+
+    field = cur_global.execute(
+        "SELECT * FROM clients WHERE IP=?", (str(IP),)).fetchall()
+    print(field, type(field))
+        
+
+    if (len(field) == 0):
+        print("table not found")
+        cur_global.execute(
+            "INSERT INTO clients (IP, field, status) VALUES (?, ?, ?)", (str(IP), "", status))
+    else:
+        print("table found")
+        cur_global.execute(
+            "UPDATE clients SET status=? WHERE IP=?", (status, str(IP)))
+    conn_global.commit()
+    conn_global.close()
 
 def websocket_send_matches():
     global current_match
@@ -329,11 +351,12 @@ class WebSocketHandler(WebSocket):
         cherrypy.log("WebSocket connection opened from \"" + self.peer_address[0] + "\"")
         websocket_clients.append(self)
         websocket_send_matches()
+        updateStatus(self.peer_address[0], 1)
 
     def closed(self, code, _):
         cherrypy.log("WebSocket connection closed from \"" + self.peer_address[0] + "\"")
         websocket_clients.remove(self)
-
+        updateStatus(self.peer_address[0], 0)
 
 if __name__ == '__main__':
     if os.path.exists("timer_status.txt"):
