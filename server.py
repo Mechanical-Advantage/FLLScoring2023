@@ -129,6 +129,7 @@ class Root(object):
 
         teams = cur_global.execute("select * from teams").fetchall()
         team_data = []
+        teams.sort()
         for team in teams:
             GPScore = cur_global.execute(
                 "select avg(GPScore) from matches where team = ?", (team[0],)).fetchall()[0][0]
@@ -171,9 +172,11 @@ class Root(object):
         # Fetch base matches
         matches = cur.execute(
             "SELECT match_number,schedule_number,stage,team1,team2 FROM playoff_structure ORDER BY match_number").fetchall()
+        
         for i in range(len(matches)):
             matches[i] = {"number": matches[i][0], "schedule_number": matches[i][1],
                           "stage": matches[i][2], "team1": matches[i][3], "team2": matches[i][4]}
+   
 
         # Convert to output format
         matches_output = []
