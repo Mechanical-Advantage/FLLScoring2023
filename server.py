@@ -35,6 +35,8 @@ class Root(object):
         <br>
         <a href='/GPScore'>GPScore Summary</a>
         <br>
+        <a href='/devices'>Devices</a>
+        <br>
         """
 
     @cherrypy.expose
@@ -140,6 +142,23 @@ class Root(object):
             html += str(team[0]) + " - " + str(GPScore) + "<br>"
 
         return html
+    
+    @cherrypy.expose
+    def devices(self):
+        html = "<style>table, th, tr, td {border: 1px solid black;}</style><body><table style='width:30%'><meta http-equiv='refresh' content='5'><tbody>"
+        conn_global = sql.connect("data.db")
+        cur_global = conn_global.cursor()
+
+        devices = cur_global.execute("select * from clients").fetchall()
+        device_data = []
+        
+        for device in devices:
+            device_data.append(device)
+            if device[2] == 1: status = "Connected" 
+            else: status = "Disconnected"
+
+            html += "<tr><td>" + device[1] + "</td><td>" + device[0] + "</td><td>" + status + "</td></tr>"
+        return html+"</tbody></table></body>"
 
     @cherrypy.expose
     def playoff_api(self):
